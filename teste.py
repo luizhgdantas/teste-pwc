@@ -4,7 +4,7 @@ def processar_endereco(endereco):
     endereco = endereco.replace(",", "")
 
     match = re.match(r"(.*?)(\d+\s*\w*)$", endereco)
-    
+
     if match:
         nome_rua = match.group(1).strip()
         numero_rua = match.group(2).strip()
@@ -12,16 +12,18 @@ def processar_endereco(endereco):
     else:
         return None, None
 
-enderecos = []
+exemplos = [
+    "Miritiba 339",
+    "Babaçu 500",
+    "Cambuí 804B",
+    "Rio Branco 23",
+    "Quirino dos Santos 23 b",
+    "4, Rue de la République",
+    "100 Broadway Av",
+    "Calle Sagasta, 26",
+    "Calle 44 No 1991"
+]
 
-while True:
-    endereco = input("Insira um endereço (ou digite 'sair' para encerrar): ")
-    
-    if endereco.lower() == 'sair':
-        break
-    
-    enderecos.append(endereco)
-
-for endereco in enderecos:
-    nome, numero = processar_endereco(endereco)
-    print(f"Entrada: {endereco} -> Saída: {{'{nome}', '{numero}'}}")
+for exemplo in exemplos:
+    nome, numero = processar_endereco(exemplo)
+    print(f"Entrada: {exemplo} Saída: {{'{nome}', '{numero}'}}")
